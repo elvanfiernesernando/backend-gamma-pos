@@ -1,0 +1,13 @@
+### create category
+
+POST http://localhost:5000/api/categories
+Content-Type: application/json
+
+{
+    "name": "Cookies"
+}
+
+### get all categories
+
+GET http://localhost:5000/api/categories
+Content-Type: application/json
