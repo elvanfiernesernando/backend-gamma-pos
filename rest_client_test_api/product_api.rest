@@ -1,0 +1,10 @@
+### create product
+
+POST http://localhost:5000/api/products
+Content-Type: application/json
+
+{
+    "name": "Crispy Corn Salted",
+    "price": 19900,
+    "categories_id": 1
+}
