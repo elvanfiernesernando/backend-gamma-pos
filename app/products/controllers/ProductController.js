@@ -32,4 +32,19 @@ const product_create = async (req = request, res = response) => {
     }
 }
 
-module.exports = { product_create };
+// get all products
+const product_all = async (req = request, res = response) => {
+    try {
+        const productData = await db.products.findMany({
+            include: {
+                categories: true
+            }
+        })
+
+        console.info(productData);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+module.exports = { product_create, product_all };
