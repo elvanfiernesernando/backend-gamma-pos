@@ -41,7 +41,11 @@ const product_all = async (req = request, res = response) => {
             }
         })
 
-        console.info(productData);
+        return res.status(200).json({
+            status: 200,
+            message: "OK",
+            data: productData
+        })
     } catch (error) {
         console.error(error);
     }
