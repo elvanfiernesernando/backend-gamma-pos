@@ -1,16 +1,14 @@
 ### create product
-
 POST http://localhost:5000/api/products
 Content-Type: application/json
 
 {
-    "name": "Crispy Corn Salted",
-    "price": 19900,
-    "categories_id": 1
+    "name": "Sprite Original",
+    "price": 8000,
+    "categories_id": 2
 }
 
 
 ### get all products
-
 GET http://localhost:5000/api/products
 Content-Type: application/json

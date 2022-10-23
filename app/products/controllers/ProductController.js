@@ -35,7 +35,7 @@ const product_create = async (req = request, res = response) => {
 // get all products
 const product_all = async (req = request, res = response) => {
     try {
-        const productData = await db.products.findMany({
+        const productsData = await db.products.findMany({
             include: {
                 categories: true
             }
@@ -44,7 +44,7 @@ const product_all = async (req = request, res = response) => {
         return res.status(200).json({
             status: 200,
             message: "OK",
-            data: productData
+            data: productsData
         })
     } catch (error) {
         console.error(error);
