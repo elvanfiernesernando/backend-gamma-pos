@@ -51,4 +51,28 @@ const product_all = async (req = request, res = response) => {
     }
 }
 
-module.exports = { product_create, product_all };
+// search products
+const product_search = async (req = request, res = response) => {
+    try {
+        const { query } = req.body;
+
+        const productsData = await db.products.findMany({
+            where: {
+                name: {
+                    contains: query
+                }
+            }
+        })
+
+        return res.status(200).json({
+            status: 200,
+            message: "OK",
+            data: productsData
+        })
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+module.exports = { product_create, product_all, product_search };

@@ -12,3 +12,12 @@ Content-Type: application/json
 ### get all products
 GET http://localhost:5000/api/products
 Content-Type: application/json
+
+
+### search product
+POST http://localhost:5000/api/products/search
+Content-Type: application/json
+
+{
+    "query": "Pizza"
+}
