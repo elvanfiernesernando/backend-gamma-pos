@@ -3,9 +3,9 @@ POST http://localhost:5000/api/products
 Content-Type: application/json
 
 {
-    "name": "Sprite Original",
-    "price": 8000,
-    "categories_id": 2
+    "name": "Pepperoni Pizza",
+    "price": 50000,
+    "categories_id": 1
 }
 
 
