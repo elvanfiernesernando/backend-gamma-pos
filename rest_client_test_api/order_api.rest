@@ -20,3 +20,8 @@ Content-Type: application/json
     ],
     "total": 62100
 }
+
+
+### get all orders
+
+GET http://localhost:5000/api/orders

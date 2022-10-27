@@ -2,13 +2,14 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
-const PORT = process.env.PORT;
-const app = express();
-
 // import routes
 const category_route = require("./app/categories/routes/CategoryRoute");
 const product_route = require("./app/products/routes/ProductRoute");
 const order_route = require("./app/orders/routes/OrderRoute");
+
+// initialization
+const PORT = process.env.PORT;
+const app = express();
 
 // middlewares
 app.use(cors());

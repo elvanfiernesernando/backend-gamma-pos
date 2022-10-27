@@ -42,6 +42,34 @@ const order_create = async (req = request, res = response) => {
     }
 }
 
+// get all orders
+const order_all = async (req = request, res = response) => {
+    try {
+        const ordersData = await db.orders.findMany({
+            include: {
+                order_details: {
+                    select: {
+                        price: true,
+                        products: {
+                            select: {
+                                name: true
+                            }
+                        }
+                    }
+                }
+            }
+        })
+
+        res.status(200).json({
+            status: 200,
+            message: "OK",
+            data: ordersData
+        })
+    } catch (error) {
+        console.error(error)
+    }
+}
 
 
-module.exports = { order_create };
+
+module.exports = { order_create, order_all };
