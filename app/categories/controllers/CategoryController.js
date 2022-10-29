@@ -68,4 +68,50 @@ const category_by_id = async (req = request, res = response) => {
     }
 }
 
-module.exports = { category_create, category_all, category_by_id };
+// edit category
+const category_edit = async (req = request, res = response) => {
+    try {
+        const id = req.params.id;
+        const name = req.body.name;
+
+        const updateCategory = await db.categories.update({
+            where: {
+                id: parseInt(id)
+            },
+            data: {
+                name: name
+            }
+        })
+
+        res.status(200).json({
+            status: 200,
+            message: "OK",
+            data: updateCategory
+        })
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+// delete category
+const category_delete = async (req = request, res = response) => {
+    try {
+        const id = req.params.id;
+
+        const deleteCategory = await db.categories.delete({
+            where: {
+                id: parseInt(id)
+            }
+        })
+
+        res.status(200).json({
+            status: 200,
+            message: "OK",
+        })
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+module.exports = { category_create, category_all, category_by_id, category_edit, category_delete };
