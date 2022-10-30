@@ -53,6 +53,23 @@ const product_all = async (req = request, res = response) => {
     }
 }
 
+// get product by id
+const product_by_id = async (req = request, res = response) => {
+    const id = req.params.id;
+
+    const productData = await db.products.findUnique({
+        where: {
+            id: parseInt(id)
+        }
+    })
+
+    res.status(200).json({
+        status: 200,
+        message: "OK",
+        data: productData
+    })
+}
+
 // search products
 const product_search = async (req = request, res = response) => {
     try {
@@ -77,4 +94,51 @@ const product_search = async (req = request, res = response) => {
     }
 }
 
-module.exports = { product_create, product_all, product_search };
+// update product
+const product_update = async (req = request, res = response) => {
+
+    try {
+        const id = req.params.id;
+
+        const name = req.body.name;
+        const price = req.body.price;
+        const categories_id = req.body.categories_id;
+
+        const updateProduct = await db.products.update({
+            where: {
+                id: parseInt(id)
+            },
+            data: {
+                name: name,
+                price: price,
+                categories_id: categories_id
+            }
+        })
+
+        res.status(200).json({
+            status: 200,
+            message: "OK",
+        })
+    } catch (error) {
+        console.info(error)
+    }
+
+}
+
+// delete product
+const product_delete = async (req = request, res = response) => {
+    const id = req.params.id;
+
+    const deleteProduct = await db.products.delete({
+        where: {
+            id: parseInt(id)
+        }
+    })
+
+    res.status(200).json({
+        status: 200,
+        message: "OK",
+    })
+}
+
+module.exports = { product_create, product_all, product_by_id, product_search, product_update, product_delete };
