@@ -29,6 +29,8 @@ const category_all = async (req = request, res = response) => {
         const categoryData = await db.categories.findMany({
             include: {
                 products: true
+            }, orderBy: {
+                created_at: "desc"
             }
         })
 
