@@ -34,7 +34,7 @@ model Products {
   id            Int             @id @default(autoincrement())
   name          String
   price         Int
-  categories    Categories      @relation(fields: [categories_id], references: [id])
+  categories    Categories      @relation(fields: [categories_id], references: [id], onDelete: Cascade)
   categories_id Int
   order_details Order_Details[]
   created_at    DateTime        @default(now())
@@ -45,6 +45,8 @@ model Orders {
   id            Int             @id @default(autoincrement())
   invoice_no    String          @unique
   total         Int
+  payment       Int
+  changes       Int
   order_details Order_Details[]
   users         Users?          @relation(fields: [users_id], references: [id])
   users_id      Int?

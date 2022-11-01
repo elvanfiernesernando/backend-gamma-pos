@@ -9,6 +9,8 @@ const order_create = async (req = request, res = response) => {
         // get request body
         const orderDetails = req.body.order_details;
         const total = req.body.total;
+        const payment = req.body.payment;
+        const changes = req.body.changes;
 
         // get current total order in db
         const ordersCount = await db.orders.count();
@@ -23,7 +25,9 @@ const order_create = async (req = request, res = response) => {
                 order_details: {
                     create: orderDetails
                 },
-                total: total
+                total: total,
+                payment: payment,
+                changes: changes
             },
             include: {
                 order_details: true
