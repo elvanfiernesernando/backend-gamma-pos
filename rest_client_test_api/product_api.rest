@@ -18,12 +18,8 @@ GET http://localhost:5000/api/products/1
 Content-Type: application/json
 
 ### search product
-POST http://localhost:5000/api/products/search
+GET http://localhost:5000/api/products/search?q=pizza
 Content-Type: application/json
-
-{
-    "query": "Pizza"
-}
 
 ### update product
 PATCH http://localhost:5000/api/products/1

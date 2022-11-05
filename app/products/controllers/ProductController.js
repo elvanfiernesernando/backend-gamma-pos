@@ -73,7 +73,7 @@ const product_by_id = async (req = request, res = response) => {
 // search products
 const product_search = async (req = request, res = response) => {
     try {
-        const { query } = req.body;
+        const query = req.query.q;
 
         const productsData = await db.products.findMany({
             where: {
@@ -127,18 +127,23 @@ const product_update = async (req = request, res = response) => {
 
 // delete product
 const product_delete = async (req = request, res = response) => {
-    const id = req.params.id;
+    try {
+        const id = req.params.id;
 
-    const deleteProduct = await db.products.delete({
-        where: {
-            id: parseInt(id)
-        }
-    })
+        const deleteProduct = await db.products.delete({
+            where: {
+                id: parseInt(id)
+            }
+        })
 
-    res.status(200).json({
-        status: 200,
-        message: "OK",
-    })
+        res.status(200).json({
+            status: 200,
+            message: "OK",
+        })
+    } catch (error) {
+        console.error(error);
+    }
+
 }
 
 module.exports = { product_create, product_all, product_by_id, product_search, product_update, product_delete };
